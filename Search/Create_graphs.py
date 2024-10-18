@@ -22,6 +22,3 @@ def create_graph():
     plt.figure(figsize=(8, 6))
     nx.draw(G, with_labels=True, node_color='skyblue', node_size=700, font_size=15, font_color='black', edge_color='gray')
     plt.show()
-
-
-create_graph()
