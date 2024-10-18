@@ -1,4 +1,5 @@
 def hill_climbing_search(graph, start, goal):
+    #informed serach 1
     current_node = start
     visited = set([current_node])
     path = [current_node]
@@ -24,3 +25,4 @@ def hill_climbing_search(graph, start, goal):
         return path
     else:
         return None
+    
