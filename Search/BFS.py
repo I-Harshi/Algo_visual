@@ -20,8 +20,8 @@ def bfs_search(graph, start, goal):
                 queue.append(new_path)
 
                 if neighbor == goal:
-                    return new_path  # Path found
+                    return new_path  
 
             visited.add(node)
 
-    return None  # No path found
+    return None  
