@@ -28,8 +28,14 @@
             <option value="Hill Climbing">Hill Climbing</option>
             <option value="Beam Search">Beam Search</option>
             <option value="Branch and Bound">Branch and Bound</option>
+            <option value="Branch and Bound with Heuristics">Branch and Bound with Heuristics</option>
+            <option value="A* Search">A* Search</option>
         </select>
         <br><br>
+
+        <label for="heuristics">Heuristics (node value pairs):</label>
+<textarea id="heuristics" name="heuristics" rows="4" cols="50" 
+          placeholder="e.g., 0 10\n1 5\n2 3"></textarea>
 
         <label for="num_nodes">Number of Nodes:</label>
         <input type="number" name="num_nodes" required>

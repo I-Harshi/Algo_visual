@@ -8,6 +8,7 @@ from bnb_heu import branch_and_bound_heuristics
 from bnb_list import branch_and_bound_with_extension
 from branch_and_bound import branch_and_bound
 from branch_and_bound import branch_and_bound
+from A_star import a_star_search
 from Create_graphs import create_graph, display_g
 import matplotlib.pyplot as plt
 import networkx as nx
@@ -67,6 +68,12 @@ def index():
             heuristic = {int(node): int(value) for node, value in 
                         [line.split() for line in heuristics_input.splitlines()]}
             path, cost = branch_and_bound_heuristics(G, start, goal, heuristic)
+        elif algorithm == 'A* Search':
+            heuristics_input = request.form['heuristics']
+            heuristic = {int(node): int(value) for node, value in 
+                        [line.split() for line in heuristics_input.splitlines()]}
+            path, cost = a_star_search(G, start, goal, heuristic)
+
 
 
         cost = sum(G[u][v]['weight'] for u, v in zip(path, path[1:]))
