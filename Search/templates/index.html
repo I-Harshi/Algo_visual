@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Search App</title>
+</head>
+<body>
+    <h1>Graph Input Form</h1>
+    <form method="POST">
+        <label for="num_nodes">Number of Nodes:</label>
+        <input type="number" name="num_nodes" required><br><br>
+
+        <label for="edges">Enter Edges (one per line, e.g., 0 1):</label><br>
+        <textarea name="edges" rows="5" cols="30" required></textarea><br><br>
+
+        <label for="start">Start Node:</label>
+        <input type="number" name="start" required><br><br>
+
+        <label for="goal">Goal Node:</label>
+        <input type="number" name="goal" required><br><br>
+
+        <button type="submit">Generate Graph and Search</button>
+    </form>
+</body>
+</html>

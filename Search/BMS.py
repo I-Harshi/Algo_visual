@@ -1,27 +1,30 @@
 import networkx as nx
-import matplotlib.pyplot as plt
+from Create_graphs import create_graph, display_graph
 
-def create_graph():
+def bms_search(graph, start, goal):
+    all_paths = list(nx.all_simple_paths(graph, source=start, target=goal))
 
-    num_nodes = int(input("Enter the number of nodes: "))
-
-    G = nx.Graph()
-
-    for i in range(num_nodes):
-        G.add_node(i)
-
-    num_edges = int(input(f"Enter the number of edges (connections) for {num_nodes} nodes: "))
+    if not all_paths:
+        print(f"No path found from {start} to {goal}.")
+        return None
 
 
-    print("Enter the connections (e.g., 0 1 to connect node 0 and 1):")
-    for _ in range(num_edges):
-        u, v = map(int, input().split())
-        G.add_edge(u, v)
+    return all_paths[0]
 
+def main():
 
-    plt.figure(figsize=(8, 6))
-    nx.draw(G, with_labels=True, node_color='skyblue', node_size=700, font_size=15, font_color='black', edge_color='gray')
-    plt.show()
+    G = create_graph()
+    start = int(input("Enter the start node: "))
+    goal = int(input("Enter the goal node: "))
 
+    path = bms_search(G, start, goal)
 
-create_graph()
+    if path:
+        print(f"Path found: {path}")
+    else:
+        print("No path found.")
+
+    display_graph(G, path)
+
+if __name__ == "__main__":
+    main()
