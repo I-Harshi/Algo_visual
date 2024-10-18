@@ -3,30 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Graph Search App</title>
+    <title>Graph Search Application</title>
+    <script>
+        function toggleWeightFields() {
+            const algorithm = document.getElementById("algorithm").value;
+            const weightSection = document.getElementById("weight-section");
+
+            if (algorithm === "Hill Climbing" || algorithm === "Beam Search") {
+                weightSection.style.display = "block";
+            } else {
+                weightSection.style.display = "none";
+            }
+        }
+    </script>
 </head>
 <body>
-    <h1>Graph Input Form</h1>
+    <h1>Graph Search Application</h1>
     <form method="POST">
-        <label for="num_nodes">Number of Nodes:</label>
-        <input type="number" name="num_nodes" required><br><br>
+        <label for="algorithm">Select Search Algorithm:</label>
+        <select name="algorithm" id="algorithm" onchange="toggleWeightFields()" required>
+            <option value="BMS">BMS (British Museum Search)</option>
+            <option value="BFS">BFS (Breadth First Search)</option>
+            <option value="DFS">DFS (Depth First Search)</option>
+            <option value="Hill Climbing">Hill Climbing</option>
+            <option value="Beam Search">Beam Search</option>
+        </select>
+        <br><br>
 
-        <label for="edges">Enter Edges (one per line, e.g., 0 1):</label><br>
-        <textarea name="edges" rows="5" cols="30" required></textarea><br><br>
+        <label for="num_nodes">Number of Nodes:</label>
+        <input type="number" name="num_nodes" required>
+        <br><br>
+
+        <label for="edges">Enter Edges (one per line, e.g., "0 1"):</label><br>
+        <textarea name="edges" rows="5" required></textarea>
+        <br><br>
+
+        <div id="weight-section" style="display: none;">
+            <label for="weights">Enter Weights for Edges (one per line, e.g., "0 1 5"):</label><br>
+            <textarea name="weights" rows="5"></textarea>
+            <br><br>
+        </div>
 
         <label for="start">Start Node:</label>
-        <input type="number" name="start" required><br><br>
+        <input type="number" name="start" required>
+        <br><br>
 
         <label for="goal">Goal Node:</label>
-        <input type="number" name="goal" required><br><br>
+        <input type="number" name="goal" required>
+        <br><br>
 
-        <label for="algorithm">Select Search Algorithm:</label>
-        <select name="algorithm" required>
-            <option value="BMS">British Museum Search</option>
-            <option value="BFS">Breadth-First Search</option>
-        </select><br><br>
-
-        <button type="submit">Generate Graph and Search</button>
+        <button type="submit">Submit</button>
     </form>
 </body>
 </html>
