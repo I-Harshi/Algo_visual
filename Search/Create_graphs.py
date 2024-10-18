@@ -14,17 +14,17 @@ def create_graph():
         G.add_edge(u, v)
 
     return G
+def display_g(G, path, algorithm, cost):
+    pos = nx.spring_layout(G)  
+    nx.draw(G, pos, with_labels=True, node_size=700, node_color="lightblue", font_size=12, font_weight='bold')
 
-def display_graph(G, path=None):
-    plt.figure(figsize=(8, 6))
-    pos = nx.spring_layout(G)
-
+    edge_labels = nx.get_edge_attributes(G, 'weight')
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_color='red')
 
     if path:
-        edges_in_path = [(path[i], path[i + 1]) for i in range(len(path) - 1)]
-        nx.draw(G, pos, with_labels=True, node_color='skyblue', node_size=700, font_size=15)
-        nx.draw_networkx_edges(G, pos, edgelist=edges_in_path, edge_color='red', width=3)
-    else:
-        nx.draw(G, pos, with_labels=True, node_color='skyblue', node_size=700, font_size=15, edge_color='gray')
+        path_edges = [(path[i], path[i + 1]) for i in range(len(path) - 1)]
+        nx.draw_networkx_edges(G, pos, edgelist=path_edges, edge_color='green', width=2)
 
+    title = f"{algorithm} | Cost: {cost if cost is not None else 'N/A'}"
+    plt.title(title, fontsize=15)
     plt.show()

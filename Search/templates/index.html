@@ -27,6 +27,7 @@
             <option value="DFS">DFS (Depth First Search)</option>
             <option value="Hill Climbing">Hill Climbing</option>
             <option value="Beam Search">Beam Search</option>
+            <option value="Branch and Bound">Branch and Bound</option>
         </select>
         <br><br>
 
@@ -43,6 +44,11 @@
             <textarea name="weights" rows="5"></textarea>
             <br><br>
         </div>
+
+        <label for="heuristics">Heuristics (node value pairs):</label>
+<textarea id="heuristics" name="heuristics" rows="4" cols="50" 
+          placeholder="e.g., 0 10\n1 5\n2 3"></textarea>
+
 
         <label for="start">Start Node:</label>
         <input type="number" name="start" required>
