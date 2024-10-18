@@ -5,3 +5,9 @@ Search Algorithms:
 2. BFS - Breadth-First Search
 3. DFS - Depth First Search
 4. HC - Hill Climbing
+5. Beam Search
+6. Branch and Bound
+7. Branch and Bound - with Extended List
+8. Branch and Bound - with Heuristics
+9. A* star
+10. Oracle 
