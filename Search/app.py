@@ -9,6 +9,8 @@ from bnb_list import branch_and_bound_with_extension
 from branch_and_bound import branch_and_bound
 from branch_and_bound import branch_and_bound
 from A_star import a_star_search
+from oracle import oracle_search
+from best_first import best_first_search
 from Create_graphs import create_graph, display_g
 import matplotlib.pyplot as plt
 import networkx as nx
@@ -38,7 +40,7 @@ def index():
             u, v = map(int, edge.split())
             G.add_edge(u, v)
 
-        if algorithm in ['Hill Climbing', 'Beam Search', 'Branch and Bound']:
+        if algorithm not in ['BMS', 'BFS', 'DFS']:
             weights = request.form['weights']
             for line in weights.splitlines():
                 try:
@@ -68,15 +70,26 @@ def index():
             heuristic = {int(node): int(value) for node, value in 
                         [line.split() for line in heuristics_input.splitlines()]}
             path, cost = branch_and_bound_heuristics(G, start, goal, heuristic)
+        elif algorithm == 'Branch and Bound with Extended List':
+            heuristics_input = request.form['heuristics']
+            heuristic = {int(node): int(value) for node, value in 
+                        [line.split() for line in heuristics_input.splitlines()]}
+            path, cost = branch_and_bound_with_extension(G, start, goal, heuristic)
         elif algorithm == 'A* Search':
             heuristics_input = request.form['heuristics']
             heuristic = {int(node): int(value) for node, value in 
                         [line.split() for line in heuristics_input.splitlines()]}
             path, cost = a_star_search(G, start, goal, heuristic)
-
-
-
-        cost = sum(G[u][v]['weight'] for u, v in zip(path, path[1:]))
+        elif algorithm == 'Oracle Search':
+            heuristics_input = request.form['heuristics']
+            heuristic = {int(node): int(value) for node, value in 
+                        [line.split() for line in heuristics_input.splitlines()]}
+            path, cost = oracle_search(G, start, goal, heuristic)
+        elif algorithm == 'Best First Search':
+            heuristics_input = request.form['heuristics']
+            heuristic = {int(node): int(value) for node, value in 
+                        [line.split() for line in heuristics_input.splitlines()]}
+            path, cost = best_first_search(G, start, goal, heuristic)
 
         display_g(G, path, algorithm, cost)
         plt.savefig('static/graph.png')

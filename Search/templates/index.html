@@ -9,12 +9,16 @@
             const algorithm = document.getElementById("algorithm").value;
             const weightSection = document.getElementById("weight-section");
 
-            if (algorithm === "Hill Climbing" || algorithm === "Beam Search") {
-                weightSection.style.display = "block";
-            } else {
+            // Show weight fields only if the selected algorithm needs it
+            if (algorithm === "BMS" || algorithm === "BFS" || algorithm === "DFS") {
                 weightSection.style.display = "none";
+            } else {
+                weightSection.style.display = "block";
             }
         }
+
+        // Ensure the correct display state is set on page load
+        window.onload = toggleWeightFields;
     </script>
 </head>
 <body>
@@ -29,13 +33,12 @@
             <option value="Beam Search">Beam Search</option>
             <option value="Branch and Bound">Branch and Bound</option>
             <option value="Branch and Bound with Heuristics">Branch and Bound with Heuristics</option>
+            <option value="Branch and Bound with Extended List">Branch and Bound with Extended List</option>
             <option value="A* Search">A* Search</option>
+            <option value="Oracle Search">Oracle Search</option>
+            <option value="Best First Search">Best First Search</option>
         </select>
         <br><br>
-
-        <label for="heuristics">Heuristics (node value pairs):</label>
-<textarea id="heuristics" name="heuristics" rows="4" cols="50" 
-          placeholder="e.g., 0 10\n1 5\n2 3"></textarea>
 
         <label for="num_nodes">Number of Nodes:</label>
         <input type="number" name="num_nodes" required>
@@ -52,9 +55,9 @@
         </div>
 
         <label for="heuristics">Heuristics (node value pairs):</label>
-<textarea id="heuristics" name="heuristics" rows="4" cols="50" 
-          placeholder="e.g., 0 10\n1 5\n2 3"></textarea>
-
+        <textarea id="heuristics" name="heuristics" rows="4" cols="50" 
+                  placeholder="e.g., 0 10\n1 5\n2 3"></textarea>
+        <br><br>
 
         <label for="start">Start Node:</label>
         <input type="number" name="start" required>
