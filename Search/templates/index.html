@@ -5,27 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Graph Search Application</title>
     <script>
-        function toggleWeightFields() {
+        function toggleFields() {
             const algorithm = document.getElementById("algorithm").value;
             const weightSection = document.getElementById("weight-section");
+            const heuristicSection = document.getElementById("heuristic-section");
 
-            // Show weight fields only if the selected algorithm needs it
+            // Toggle weight fields: Hidden for BMS, BFS, DFS
             if (algorithm === "BMS" || algorithm === "BFS" || algorithm === "DFS") {
                 weightSection.style.display = "none";
             } else {
                 weightSection.style.display = "block";
             }
+
+            // Toggle heuristic fields: Shown only for A*, Hill Climbing, and other heuristic-based algorithms
+            if (["Hill Climbing", "A* Search", "Best First Search"].includes(algorithm)) {
+                heuristicSection.style.display = "block";
+            } else {
+                heuristicSection.style.display = "none";
+            }
         }
 
-        // Ensure the correct display state is set on page load
-        window.onload = toggleWeightFields;
+        // Ensure the correct display state on page load
+        window.onload = toggleFields;
     </script>
 </head>
 <body>
     <h1>Graph Search Application</h1>
     <form method="POST">
         <label for="algorithm">Select Search Algorithm:</label>
-        <select name="algorithm" id="algorithm" onchange="toggleWeightFields()" required>
+        <select name="algorithm" id="algorithm" onchange="toggleFields()" required>
             <option value="BMS">BMS (British Museum Search)</option>
             <option value="BFS">BFS (Breadth First Search)</option>
             <option value="DFS">DFS (Depth First Search)</option>
@@ -48,16 +56,20 @@
         <textarea name="edges" rows="5" required></textarea>
         <br><br>
 
+        <!-- Weight Section -->
         <div id="weight-section" style="display: none;">
             <label for="weights">Enter Weights for Edges (one per line, e.g., "0 1 5"):</label><br>
             <textarea name="weights" rows="5"></textarea>
             <br><br>
         </div>
 
-        <label for="heuristics">Heuristics (node value pairs):</label>
-        <textarea id="heuristics" name="heuristics" rows="4" cols="50" 
-                  placeholder="e.g., 0 10\n1 5\n2 3"></textarea>
-        <br><br>
+        <!-- Heuristic Section -->
+        <div id="heuristic-section" style="display: none;">
+            <label for="heuristics">Heuristics (node value pairs):</label><br>
+            <textarea id="heuristics" name="heuristics" rows="4" cols="50" 
+                      placeholder="e.g., 0 10\n1 5\n2 3"></textarea>
+            <br><br>
+        </div>
 
         <label for="start">Start Node:</label>
         <input type="number" name="start" required>
