@@ -1,7 +1,7 @@
 import heapq
 
 def a_star_search(graph, start, goal, heuristic):
-    # Priority queue: stores (f_cost, g_cost, current_node, path)
+
     pq = [(heuristic[start], 0, start, [start])]
     visited = set()
 
@@ -12,11 +12,11 @@ def a_star_search(graph, start, goal, heuristic):
             continue
         visited.add(current)
 
-        # If goal is found, return path and total cost
+
         if current == goal:
             return path, g_cost
 
-        # Explore neighbors
+
         for neighbor in graph[current]:
             if neighbor not in visited:
                 edge_cost = graph[current][neighbor]['weight']
