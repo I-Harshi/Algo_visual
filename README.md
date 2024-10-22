@@ -1,6 +1,6 @@
 # Algo_visual
 Implementation of 12 Search Algorithms and Game Theory Algorithms.
-Search Algorithms:
+## Search Algorithms:
 1. BMS - British Museum Search
 2. BFS - Breadth-First Search
 3. DFS - Depth First Search
@@ -10,4 +10,13 @@ Search Algorithms:
 7. Branch and Bound - with Extended List
 8. Branch and Bound - with Heuristics
 9. A* star
-10. Oracle 
+10. Oracle
+11. Best-First Search
+
+
+## Game Algorithms:
+1. Min Max Algorithm
+- Minimiser at depth 0
+- Maximiser at depth 0
+
+2. Alpha - Beta Pruning
